@@ -18,6 +18,7 @@ abstract class Car
     public abstract function setPrice(float $price);
     public abstract function getPrice(): float;
     public abstract function getEngine();
+    public abstract function getEnginePower();
 }
 
 class ElectricalCar extends Car
