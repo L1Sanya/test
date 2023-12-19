@@ -17,8 +17,8 @@ abstract class Car
     public abstract function getModel(): string;
     public abstract function setPrice(float $price);
     public abstract function getPrice(): float;
-    public abstract function getEngine();
-    public abstract function getEnginePower();
+    public abstract function getEngine(): Engine;
+    public abstract function getEnginePowering(): string;
 }
 
 class ElectricalCar extends Car
@@ -75,7 +75,7 @@ class ElectricalCar extends Car
         return $this->price;
     }
 
-    public function getEngine()
+    public function getEngine(): Engine
     {
         return $this->engine;
     }
@@ -139,7 +139,7 @@ class FuelCar extends Car
         return $this->price;
     }
 
-    public function getEngine()
+    public function getEngine(): Engine
     {
         return $this->engine;
     }
