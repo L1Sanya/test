@@ -1,12 +1,12 @@
 <?php
 
-class Car
+abstract class Car
 {
-    private string $name;
-    private string $color;
-    private string $model;
-    private float $price;
-    private Engine $engine;
+    protected string $name;
+    protected string $color;
+    protected string $model;
+    protected float $price;
+    protected Engine $engine;
 
     public function __construct(string $name,string $color,string $model,float $price, Engine $engine)
     {
@@ -79,6 +79,22 @@ class ElectricalCar extends Car
     }
 }
 
+class FuelCar extends Car
+{
+    private float $fuelCapacity;
+
+    public function __construct(string $name,string $color,string $model,float $price,float $batteryCapacity,Engine $engine)
+    {
+        parent::__construct($name,$color,$model,$price,$engine);
+        $this->batteryCapacity = $batteryCapacity;
+    }
+
+    public function getEnginePowering(): string
+    {
+        return "Fuel";
+    }
+}
+
 
 class Engine
 {
@@ -97,10 +113,13 @@ class Engine
 }
 $engine1 = new Engine(100);
 $engine2 = new Engine(200);
-$car1 = new Car("BMW","Black","X5",50000,$engine1);
-$car2 = new ElectricalCar("Tesla","White","Model 3",70000,100,$engine2);
+$fuelCar1 = new FuelCar("BMW","Black","X5",50000,40,$engine1);
+$electricalCar1 = new ElectricalCar("Tesla","White","Model 3",70000,100,$engine2);
 
-echo $car1->getEngine()->getPower();
+echo $fuelCar1->getEngine()->getPower(). "\n";
+echo $electricalCar1->getEngine()->getPower(). "\n";
+echo $fuelCar1->getEnginePowering(). "\n";
+echo $electricalCar1->getEnginePowering(). "\n";
 
 
 ?>
